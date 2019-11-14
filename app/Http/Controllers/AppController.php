@@ -40,6 +40,11 @@ class AppController extends Controller
         return redirect()->back()->with('success', 'Successfully saved!');
     }
 
+    public function redirectWithComplete()
+    {
+        return redirect()->back()->with('complete', 'Successfully Completed!');
+    }
+
     public function redirectWithDelete()
     {
         return redirect()->back()->with('success', 'Successfully deleted!');

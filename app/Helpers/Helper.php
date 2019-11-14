@@ -16,4 +16,27 @@ if (!function_exists('hs')) {
     }
 }
 
+if(!function_exists('ts')) {
+
+    function ts($s) {
+        return $s == 'IN_PROGRESS' 
+        ? '<label class="badge badge-primary"><i class="fa fa-clock"></i> ' . $s . '</label>'
+        : '<label class="badge badge-warning"><i class="fa fa-check-double"></i> ' . $s . '</label>';
+    }
+
+}
+
+if (!function_exists('getCat')) {
+
+    function getCat($c)
+    {
+        $check = \App\Category::where('id', $c)->count();
+        if($check == 0) {
+            return "-";
+        }else {
+            return '<label class="badge badge-success"><i class="fa fa-list"></i> '.  
+            \App\Category::find($c)->name . '</label>';
+        }
+    }
+}
 

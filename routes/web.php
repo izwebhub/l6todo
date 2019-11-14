@@ -45,6 +45,15 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/app/users/change/password/save', 'UserController@savePassword')->name('app.users.change.password.save');
     });
 
+    // Todos codes
+    Route::get('/app/todos/index', 'TodoController@index')->name('app.todos.index');
+    Route::post('/app/todos/save', 'TodoController@save')->name('app.todos.save');
+    Route::post('/app/todos/update', 'TodoController@update')->name('app.todos.update');
+    Route::post('/app/todos/complete/{id}', 'TodoController@complete')->name('app.todos.complete');
+    Route::post('/app/todos/delete/{id}', 'TodoController@destroy')->name('app.todos.delete');
+    Route::get('/app/todos/edit/{id}', 'TodoController@edit')->name('app.todos.edit');
+    Route::get('/app/todos/view/{id}', 'TodoController@view')->name('app.todos.view');
+
     //Logout
     Route::get('/app/logout', 'AppController@logout')->name('app.logout');
 
@@ -53,5 +62,6 @@ Route::middleware(['auth'])->group(function () {
 
     // BackOff
     Route::get('/app/redirectWith', 'AppController@redirectWith')->name('app.redirectWith');
+    Route::get('/app/redirectWithComplete', 'AppController@redirectWithComplete')->name('app.redirectWithComplete');
     Route::get('/app/redirectWith/delete', 'AppController@redirectWithDelete')->name('app.redirectWith.delete');
 });

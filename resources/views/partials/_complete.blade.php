@@ -1,6 +1,6 @@
-@if(session()->has('success'))
+@if(session()->has('complete'))
 <div class="alert alert-success flush">
-    <i class="fa fa-check"></i> {{session()->get('success')}}
+    <i class="fa fa-check"></i> {{session()->get('complete')}}
 </div>
 @endif
 

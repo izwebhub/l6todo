@@ -14,7 +14,7 @@
             </a>
             <ul class="submenu">
                 <li>
-                    <a href="apps-companies.html"><i class="fa fa-list"></i> Manage Todos</a>
+                    <a href="{{route('app.todos.index')}}"><i class="fa fa-list"></i> Manage Todos</a>
                 </li>
             </ul>
         </li>

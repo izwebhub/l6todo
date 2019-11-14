@@ -21,7 +21,10 @@
     <!-- Custom box css -->
     <link href="{{url('assets/libs/custombox/custombox.min.css')}}" rel="stylesheet">
 
+    <link rel="stylesheet" type="text/css" href="{{url('ve/css/validationEngine.jquery.css')}}">
+
     <!-- App css -->
+    <link href="{{url('assets/css/sa.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{url('assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{url('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{url('assets/css/app.min.css')}}" rel="stylesheet" type="text/css" />
@@ -29,6 +32,45 @@
 </head>
 
 <body>
+
+    <div class="modal fade change-password-modal" tabindex="-1" role="dialog" aria-labelledby="myCenterModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myCenterModalLabel"><i class="fa fa-key"></i> Change Password</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <form role="form" id="changePassForm" novalidate="">
+                        {{csrf_field()}}
+                        <div class="form-group row">
+                            <label for="password" class="col-sm-4 col-form-label">Password<span class="text-danger">*</span></label>
+                            <div class="col-sm-7">
+                                <input type="password" required="" class="form-control validate[required]" data-errormessage-value-missing="Password is required!" name="password" id="password" placeholder="Enter New Password">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="cpassword" class="col-sm-4 col-form-label">Confirm Password<span class="text-danger">*</span></label>
+                            <div class="col-sm-7">
+                                <input type="password" required="" class="form-control validate[required]" data-errormessage-value-missing="Confirm Password is required!" name="cpassword" id="cpassword" placeholder="Enter Confirm Password">
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="form-group row">
+                            <div class="col-sm-8 offset-sm-4">
+                                <button type="button" id="changePassword" class="btn btn-primary waves-effect waves-light mr-1">
+                                    Change Password
+                                </button>
+                                <button type="reset" class="btn btn-secondary waves-effect waves-light">
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
 
     <!-- Navigation Bar-->
     <header id="topnav">
@@ -62,6 +104,11 @@
                             <div class="dropdown-header noti-title">
                                 <h6 class="text-overflow m-0">TodoApp!</h6>
                             </div>
+
+                            <a href="#" data-toggle="modal" data-target=".change-password-modal" class="dropdown-item notify-item">
+                                <i class="fa fa-key"></i>
+                                <span>Change Password</span>
+                            </a>
 
                             <div class="dropdown-divider"></div>
 
@@ -156,6 +203,7 @@
 
     <!-- Vendor js -->
     <script src="{{url('assets/js/vendor.min.js')}}"></script>
+    <script src="{{url('assets/js/sa.js')}}"></script>
 
     <!-- Modal-Effect -->
     <script src="{{url('assets/libs/custombox/custombox.min.js')}}"></script>
@@ -171,12 +219,44 @@
     <!-- init js -->
     <script src="{{url('assets/js/pages/dashboard-2.init.js')}}"></script>
 
+    <script type="text/javascript" src="{{url('ve/js/languages/jquery.validationEngine-en.js')}}"></script>
+    <script type="text/javascript" src="{{url('ve/js/jquery.validationEngine.js')}}"></script>
+
     @yield('scripts')
+
+    <script type="text/javascript" src="{{url('biggojs/biggo.js')}}"></script>
 
     <!-- App js -->
     <script src="{{url('assets/js/app.min.js')}}"></script>
 
+    <script>
+        $(function() {
+            $('body').on('click', '#changePassword', function() {
+                var valid = $("#changePassForm").validationEngine('validate');
+                if (valid) {
+                    // change the password now!!
+                    $('#changePassForm').css('opacity', 0.2);
 
+                    var data = {
+                        _token: '{{csrf_token()}}',
+                        password: $('#password').val()
+                    };
+
+                    Biggo.talkToServer('{{route("app.settings.password.save")}}', data, false).then(function(res) {
+                        $('#changePassForm').css('opacity', 1);
+                        $('#password').val('');
+                        $('#cpassword').val('');
+                        if (res.error) {
+                            Biggo.showFeedBack(changePassForm, res.msg, res.error);
+                        } else {
+                            Biggo.showFeedBack(changePassForm, res.msg, res.error);
+                        }
+
+                    });
+                }
+            });
+        });
+    </script>
 
 </body>
 

@@ -28,10 +28,10 @@
             </a>
             <ul class="submenu">
                 <li>
-                    <a href="apps-kanbanboard.html"><i class="fa fa-plus"></i> Create New</a>
+                    <a href="#"><i class="fa fa-plus"></i> Create New</a>
                 </li>
                 <li>
-                    <a href="apps-companies.html"><i class="fa fa-users"></i> Manage Users</a>
+                    <a href="{{route('app.users.index')}}"><i class="fa fa-users"></i> Manage Users</a>
                 </li>
             </ul>
         </li>

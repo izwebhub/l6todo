@@ -7,27 +7,40 @@ use Illuminate\Http\Request;
 class AppController extends Controller
 {
     //
-    public function doLogin() {
+    public function doLogin()
+    {
         $data = [
-    		"email"     => request("email"),
-    		"password"  => request("password")
-    	];
+            "email"     => request("email"),
+            "password"  => request("password")
+        ];
 
-    	$credtx = auth()->attempt($data);
+        $credtx = auth()->attempt($data);
 
-    	if($credtx) {
-    		return redirect()->intended('/app/dashboard');
-    	}else {
-    		return redirect()->back()->with('error', 'Invalid User');
-    	}
+        if ($credtx) {
+            return redirect()->intended('/app/dashboard');
+        } else {
+            return redirect()->back()->with('error', 'Invalid User');
+        }
     }
 
-    public function dashboard() {
+    public function dashboard()
+    {
         return view('app.dashboard');
     }
 
-    public function logout() {
+    public function logout()
+    {
         auth()->logout();
         return redirect()->to('/login')->with('success', 'Successfully Logout');
+    }
+
+    public function redirectWith()
+    {
+        return redirect()->back()->with('success', 'Successfully saved!');
+    }
+
+    public function redirectWithDelete()
+    {
+        return redirect()->back()->with('success', 'Successfully deleted!');
     }
 }

@@ -52,7 +52,7 @@
                         <div class="form-group row">
                             <label for="cpassword" class="col-sm-4 col-form-label">Confirm Password<span class="text-danger">*</span></label>
                             <div class="col-sm-7">
-                                <input type="password" required="" class="form-control validate[required]" data-errormessage-value-missing="Confirm Password is required!" name="cpassword" id="cpassword" placeholder="Enter Confirm Password">
+                                <input type="password" required="" class="form-control validate[required,equals[password]]" data-errormessage-value-missing="Confirm Password is required!" name="cpassword" id="cpassword" placeholder="Enter Confirm Password">
                             </div>
                         </div>
                         <hr />
@@ -172,7 +172,8 @@
 
     <div class="wrapper">
         <div class="container-fluid">
-
+            <br/>
+            @include('partials._error')
             @yield('main')
 
         </div> <!-- end container -->

@@ -1,6 +1,6 @@
 @if(session()->has('error'))
 <div class="alert alert-danger flush">
-    <i class="fa fa-check"></i> {{session()->get('success')}}
+    <i class="fa fa-check"></i> {{session()->get('error')}}
 </div>
 @endif
 

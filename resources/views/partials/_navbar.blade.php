@@ -14,27 +14,23 @@
             </a>
             <ul class="submenu">
                 <li>
-                    <a href="apps-kanbanboard.html"><i class="fa fa-plus"></i> Create New</a>
-                </li>
-                <li>
                     <a href="apps-companies.html"><i class="fa fa-list"></i> Manage Todos</a>
                 </li>
             </ul>
         </li>
 
+        @if(auth()->user()->role == \App\User::ADMINISTRATOR)
         <li class="has-submenu">
             <a href="#">
                 <i class="fa fa-users"></i>Users <div class="arrow-down"></div>
             </a>
             <ul class="submenu">
                 <li>
-                    <a href="#"><i class="fa fa-plus"></i> Create New</a>
-                </li>
-                <li>
                     <a href="{{route('app.users.index')}}"><i class="fa fa-users"></i> Manage Users</a>
                 </li>
             </ul>
         </li>
+
 
         <li class="has-submenu">
             <a href="#"> <i class="fe-settings noti-icon"></i>Settings <div class="arrow-down"></div></a>
@@ -44,6 +40,7 @@
                 </li>
             </ul>
         </li>
+        @endif
 
 
 

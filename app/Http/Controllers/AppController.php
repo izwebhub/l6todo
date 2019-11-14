@@ -11,7 +11,8 @@ class AppController extends Controller
     {
         $data = [
             "email"     => request("email"),
-            "password"  => request("password")
+            "password"  => request("password"),
+            "active"    => 1
         ];
 
         $credtx = auth()->attempt($data);

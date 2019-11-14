@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
         $user->name  = 'Joe Doe';
         $user->email = 'joedoe@example.com';
         $user->password = bcrypt('1234');
+        $user->role   = 'ADMINISTRATOR';
+        $user->active = 1;
         $user->save();
 
         print('Added User Successfully!');

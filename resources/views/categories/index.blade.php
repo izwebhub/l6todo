@@ -72,7 +72,7 @@
     <div class="col-8">
         <div class="page-title-box">
             <div class="page-title-right">
-                <button class="btn btn-primary waves-effect waves-light" data-plugin="custommodal" data-overlaycolor="#38414a data-animation=" fadein" data-toggle="modal" data-target=".add-modal"><i class="fa fa-plus"></i> Add Category</button>
+                <button class="btn btn-primary waves-effect waves-light"  data-toggle="modal" data-target=".add-modal"><i class="fa fa-plus"></i> Add Category</button>
             </div>
             <h4 class="page-title"><i class="fa fa-th"></i> Categories</h4>
         </div>
